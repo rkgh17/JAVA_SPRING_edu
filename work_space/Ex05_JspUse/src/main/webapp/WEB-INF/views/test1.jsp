@@ -7,6 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<%
+	int i=2;
+	int j=3;
+	out.println("Hello World"); //System.out
+	out.println("<br>"+(i*j));
+%>
 </body>
 </html>
