@@ -1,6 +1,7 @@
 package com.study.springboot;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -13,7 +14,10 @@ public class myController {
 	}
 	
 	@RequestMapping("/test1") // localhost:8081/test1
-	public String test1() {
+	public String test1(Model model) { // 파라미터 전달 - from server to client
+		model.addAttribute("name","Hwang Ji Hoon");
+		model.addAttribute("gender","Male");
+		model.addAttribute("age",27);
 		return "test1"; // 실제 호출 될 /WEB-INF/view/test1.jsp
 	}
 	
