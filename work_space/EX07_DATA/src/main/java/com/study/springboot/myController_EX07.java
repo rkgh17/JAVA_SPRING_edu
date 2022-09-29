@@ -1,0 +1,89 @@
+package com.study.springboot;
+
+import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+public class myController_EX07 {
+	
+	@RequestMapping("/")
+	public @ResponseBody String root() throws Exception{
+		return "EX07";
+	}
+	
+	@RequestMapping("/login")
+	public String login() {
+		System.out.println("login called");
+		return "login";
+	}
+	
+	@RequestMapping("/checkUser")
+	public String chekUser(HttpServletRequest req, Model model) {
+		System.out.println("checkUser called");
+		String loginId = req.getParameter("loginid");
+		String pw = req.getParameter("passcode");
+		
+		model.addAttribute("loginid", loginId);
+		model.addAttribute("passcode", pw);
+		return "logininfo";
+	}
+	
+	@RequestMapping("/multiple")
+	public String multiple() {
+		System.out.println("multiple called");
+		return "multiple";
+	}
+	
+	@RequestMapping("/multiple_result")
+	public String multiple_result(HttpServletRequest req, Model model) {
+		System.out.println("result called");
+		String multi = req.getParameter("dan");
+		
+		model.addAttribute("dan", multi);
+		return "multiple_result";
+	}
+	
+	@RequestMapping("/multiple2")
+	public String multiple2() {
+		System.out.println("multiple2 called");
+		return "multiple2";
+	}
+	
+	@RequestMapping("/multiple_result2")
+	public ModelAndView multiple_result2(HttpServletRequest req, Model model) {
+		ModelAndView mv = new ModelAndView();
+		ArrayList<String> list = new ArrayList<String>();
+		int dan=Integer.parseInt(req.getParameter("dan"));
+		String result="";
+		for (int i = dan ; i<10 ; i++) {
+			for(int j = 2 ; j<10 ; j++) {
+				result=(i+" * "+j+" = "+(i*j)+"<br>");
+				list.add(result);
+			}
+			result="------------------------------<br>";
+			list.add(result);
+		}
+		mv.addObject("lists",list);
+		mv.setViewName("multiple_result2");
+		
+		return mv;
+	}
+	
+}
+
+/*
+
+
+client -< Web Server 데이터 전송
+1. form 태그 in HTML
+2. QueryString
+3. AJAX
+
+*/
