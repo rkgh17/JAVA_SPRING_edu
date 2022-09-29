@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,6 +30,9 @@ public class myController_EX07 {
 		System.out.println("checkUser called");
 		String loginId = req.getParameter("loginid");
 		String pw = req.getParameter("passcode");
+		if(!loginId.equals("a") || !loginId.equals("a")) {
+			return "redirect:/login";
+		}
 		
 		model.addAttribute("loginid", loginId);
 		model.addAttribute("passcode", pw);
@@ -93,6 +97,16 @@ public class myController_EX07 {
 		return "showDan";
 	}
 	
+	
+	// REST API
+	@RequestMapping("/test3/{fruit}/{flower}")
+	public String resttest(@PathVariable String fruit_name, @PathVariable String flower_name, Model model) {
+		model.addAttribute("fruit", fruit_name);
+		model.addAttribute("flower", flower_name);
+		return "RESTAPITest";
+		
+	}
+	
 }
 
 /*
@@ -102,5 +116,24 @@ client -< Web Server 데이터 전송
 1. form 태그 in HTML
 2. QueryString
 3. AJAX
+
+
+
+데이터 받는 여러방법
+1.
+@RequestMapping("/URL")
+public String method1(HttpServletRequest req, ...) {
+	String _name = req.getParameter("name");
+}
+
+2.
+@RequestMapping("/URL")
+public String method2(@RequetParam("name") String _name, ...) {
+}
+
+3.
+@RequestMapping("/URL")
+public String method3(Member member, ...) {
+} -> 커맨드 객체를 만들어줘야 함.
 
 */
