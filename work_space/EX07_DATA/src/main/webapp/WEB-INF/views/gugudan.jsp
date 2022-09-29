@@ -27,9 +27,9 @@ $(document).on('clikc','#btnSubmit',function(){
 
 })
  
---%>>
-$(document)
-.on('submit','#frmGugu',function(){
+--%>
+
+$(document).on('submit','#frmGugu',function(){
 	document.location='/showDan/'+$('#dan').val();
 	return false;
 })

@@ -26,11 +26,14 @@ public class myController_EX07 {
 	}
 	
 	@RequestMapping("/checkUser")
-	public String chekUser(HttpServletRequest req, Model model) {
-		System.out.println("checkUser called");
-		String loginId = req.getParameter("loginid");
-		String pw = req.getParameter("passcode");
-		if(!loginId.equals("a") || !loginId.equals("a")) {
+//	public String checkUser(HttpServletRequest req, Model model) {
+//		System.out.println("checkUser called");
+//		String loginId = req.getParameter("loginid");
+//		String pw = req.getParameter("passcode");
+	public String checkUser(Member member, Model model) {
+		String loginId = member.getLoginid();
+		String pw = member.getPw();
+		if(!loginId.equals("a") || !pw.equals("a")) {
 			return "redirect:/login";
 		}
 		
