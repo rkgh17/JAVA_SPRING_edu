@@ -35,6 +35,21 @@ public class myController {
 		return "logininfo";
 	}
 	
+	@RequestMapping("/multiple")
+	public String multiple() {
+		System.out.println("multiple called");
+		return "multiple";
+	}
+	
+	@RequestMapping("/multiple_result")
+	public String multiple_result(HttpServletRequest rq, Model md) {
+		System.out.println("result called");
+		String mul = rq.getParameter("dan");
+		
+		md.addAttribute("dan", mul);
+		return "multiple_result";
+	}
+	
 }
 
 /*
