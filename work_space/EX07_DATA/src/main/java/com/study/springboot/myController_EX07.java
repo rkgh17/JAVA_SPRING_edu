@@ -82,15 +82,22 @@ public class myController_EX07 {
 		return mv;
 	}
 	
-	@RequestMapping("/showDan")
-	public String showDan(HttpServletRequest req, Model model) {
-		int n=Integer.parseInt(req.getParameter("dan"));
+	// REST API
+	@RequestMapping("/gugudan")
+	public String gugudan() {
+		System.out.println("gugudan called");
+		return "gugudan";
+	}
+	
+	@RequestMapping("/showDan/{dan}")
+	public String showDan(@PathVariable String dan, Model model) {
+		int n=Integer.parseInt(dan);
 		if(n<2 || n>9) {
 			return "redirect:/gugudan";//유효성 검사
 		}
 		String result="";
-		for (int i = n ; i<10 ; i++) {
-			result+=(n+" * "+i+" = "+(n*i)+"<br>");
+		for (int i = 1 ; i<10 ; i++) {
+			result=result+(n+" * "+i+" = "+(n*i)+"<br>");
 		}
 		model.addAttribute("dan", n);
 		model.addAttribute("result", result);
@@ -98,11 +105,11 @@ public class myController_EX07 {
 	}
 	
 	
-	// REST API
+	
 	@RequestMapping("/test3/{fruit}/{flower}")
-	public String resttest(@PathVariable String fruit_name, @PathVariable String flower_name, Model model) {
-		model.addAttribute("fruit", fruit_name);
-		model.addAttribute("flower", flower_name);
+	public String resttest(@PathVariable String fruit, @PathVariable String flower, Model model) {
+		model.addAttribute("fruit", fruit);
+		model.addAttribute("flower", flower);
 		return "RESTAPITest";
 		
 	}

@@ -8,7 +8,7 @@
 <title>Fruit / Flower</title>
 </head>
 <body>
-Fruit : ${fruit}
+Fruit : ${fruit}<br>
 Flower : ${flower}
 </body>
 </html>
