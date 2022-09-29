@@ -61,19 +61,36 @@ public class myController_EX07 {
 		ModelAndView mv = new ModelAndView();
 		ArrayList<String> list = new ArrayList<String>();
 		int dan=Integer.parseInt(req.getParameter("dan"));
-		String result="";
+		String result="------------<br>";
+		list.add(result);
+		
 		for (int i = dan ; i<10 ; i++) {
 			for(int j = 2 ; j<10 ; j++) {
 				result=(i+" * "+j+" = "+(i*j)+"<br>");
 				list.add(result);
 			}
-			result="------------------------------<br>";
+			result="------------<br>";
 			list.add(result);
 		}
 		mv.addObject("lists",list);
 		mv.setViewName("multiple_result2");
 		
 		return mv;
+	}
+	
+	@RequestMapping("/showDan")
+	public String showDan(HttpServletRequest req, Model model) {
+		int n=Integer.parseInt(req.getParameter("dan"));
+		if(n<2 || n>9) {
+			return "redirect:/gugudan";//유효성 검사
+		}
+		String result="";
+		for (int i = n ; i<10 ; i++) {
+			result+=(n+" * "+i+" = "+(n*i)+"<br>");
+		}
+		model.addAttribute("dan", n);
+		model.addAttribute("result", result);
+		return "showDan";
 	}
 	
 }
