@@ -49,3 +49,39 @@ public class myController {
 		return "/sub/test2"; // 실제 호출 될 /WEB-INF/view/sub/test2.jsp
 	}
 }
+
+/*
+Model 사용법
+
+1. 메소드의 매개변수로서 선언
+	public String method1(Model model)
+	
+2. 모델 인스턴스에 값을 싣는다.
+	model.addAttribute("변수명1","값");
+
+3. JSP파일 이름을 리턴
+	return "JSP파일 이름";
+
+
+ModelAndView 사용법
+
+1. 메소드의 반환값으로 선언, 매개변수로 사용안함
+	public ModelAndView method1(){
+		ModelAndView mv = new ModelAndView();
+		
+2. 값을 싣는다.
+	mv.addObject("변수명1","값");
+	
+3. JSP파일 이름을 싣는다.
+	mv.settViewName("JSP파일이름");
+	
+4. ModelAndView를 리턴
+	return ModelAndView이름;
+
+
+client -< Web Server 데이터 전송
+1. form 태그 in HTML
+2. QueryString
+3. AJAX
+
+*/
