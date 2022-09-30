@@ -26,13 +26,13 @@ public class myController_EX07 {
 	}
 	
 	@RequestMapping("/checkUser")
-//	public String checkUser(HttpServletRequest req, Model model) {
-//		System.out.println("checkUser called");
-//		String loginId = req.getParameter("loginid");
-//		String pw = req.getParameter("passcode");
-	public String checkUser(Member member, Model model) {
-		String loginId = member.getLoginid();
-		String pw = member.getPw();
+	public String checkUser(HttpServletRequest req, Model model) { // url로 파라미터를 전달받음
+		System.out.println("checkUser called");
+		String loginId = req.getParameter("loginid");
+		String pw = req.getParameter("passcode");
+//	public String checkUser(Member member, Model model) { //멤버 클래스 사용
+//		String loginId = member.getLoginid();
+//		String pw = member.getPw();
 		if(!loginId.equals("a") || !pw.equals("a")) {
 			return "redirect:/login";
 		}
@@ -40,6 +40,27 @@ public class myController_EX07 {
 		model.addAttribute("loginid", loginId);
 		model.addAttribute("passcode", pw);
 		return "logininfo";
+	}
+	
+	@RequestMapping("/login_post") // post방식
+	public String login_post() {
+		System.out.println("login called");
+		return "login_post";
+	}
+	
+	@RequestMapping("/checkUser_post")
+	public String checkUser_post(HttpServletRequest req, Model model) { // url로 파라미터를 전달받음
+		System.out.println("checkUser called");
+		String loginId = req.getParameter("loginid");
+		String pw = req.getParameter("passcode");
+
+		if(!loginId.equals("a") || !pw.equals("a")) {
+			return "redirect:/login";
+		}
+		
+		model.addAttribute("loginid", loginId);
+		model.addAttribute("passcode", pw);
+		return "logininfo_post";
 	}
 	
 	@RequestMapping("/multiple")
