@@ -20,6 +20,11 @@ public class ContentValidator implements Validator{
 			errors.rejectValue("writer", "trouble");
 		}
 		
+		String sContent = dto.getContent();
+		if(sContent == null || sContent.trim().isEmpty()) { // 내용이 없거나 비어있다
+			System.out.println("Content is null or empty");
+			errors.rejectValue("Content", "trouble");
+		}
 	}
 
 }
