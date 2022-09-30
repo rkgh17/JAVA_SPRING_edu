@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class mycontroller {
 	
-	@RequestMapping("/")
+	@RequestMapping("/a")
 	public @ResponseBody String root() throws Exception{
-		return "Validator(2)";
+		return "index";
 	}
 	
 	@RequestMapping("/insertForm")
@@ -42,5 +42,9 @@ public class mycontroller {
 			page = "createPage";
 		}
 		return page;
+	}
+	@RequestMapping("/signup")
+	public String insert3() {
+		return null;
 	}
 }

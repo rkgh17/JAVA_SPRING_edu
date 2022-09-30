@@ -4,14 +4,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>CreatePage</title>
+<title>Login Form</title>
 </head>
 <body>
 ${error_message}
 <form action="/create">
-작성자 : <input type = text name=writer value="${dto.writer}"><br>
-내용 : <input type = text name=content value="${dto.content}"><br>
-<input type = submit value="전송"><br>
+아이디 : <input type = text name=writer value="${dto.writer}"><br>
+비밀번호 : <input type = password name=content value="${dto.content}"><br>
+&nbsp;
+<input type=submit value='Login'>&nbsp;
+<input type=reset value='비우기'><br><br>
+<input type=button value='회원가입' onclick="location='signup'">
 </form>
 </body>
 </html>

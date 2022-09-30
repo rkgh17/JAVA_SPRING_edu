@@ -14,7 +14,7 @@ public class MyController_EX12 {
 	
 	@RequestMapping("/")
 	public @ResponseBody String root() throws Exception{
-		return "<input type = text name=writer value=\"${dto.writer}\"><br>";
+		return "12";
 	}
 	
 	@RequestMapping("/insertForm")

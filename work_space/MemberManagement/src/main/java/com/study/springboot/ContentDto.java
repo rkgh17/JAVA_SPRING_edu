@@ -9,12 +9,12 @@ import lombok.Data;
 @Data
 public class ContentDto {
 	private int id;
-	@NotNull(message="writer is null.")
-	@NotEmpty(message="writer is empty")
-	@Size(min=3, max=10, message="writer min 3, max 10.")
+	@NotNull(message="아이디를 입력하세요.")
+	@NotEmpty(message="아이디를 입력하세요.")
+	@Size(min=3, max=10, message="아이디는 3~10자리")
 	private String writer;
-	@NotNull(message="content is null.")
-	@NotEmpty(message="content is empty")
+	@NotNull(message="비밀번호를 입력하세요")
+	@NotEmpty(message="비밀번호를 입력하세요")
 	private String content;
 	private String error_message;
 }

@@ -4,12 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>CreatePageDone</title>
+<title>Login clear!!</title>
 </head>
 <body>
-createDonePage.jsp
+로그인 성공!
 <br>
-이름 : ${dto.writer}<br>
-내용 : ${dto.content}
+Id : ${dto.writer}
 </body>
 </html>
