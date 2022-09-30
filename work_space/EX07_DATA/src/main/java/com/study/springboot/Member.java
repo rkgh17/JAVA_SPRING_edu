@@ -19,4 +19,8 @@ public class Member {
 //	public void setPw(String pw) {
 //		this.pw = pw;
 //	}
+//  라이브러리 추가
+//	우클릭 - Build Path - Configure Build Path - 라이브러리 - classpath - Add External Jars
+	
+
 }
