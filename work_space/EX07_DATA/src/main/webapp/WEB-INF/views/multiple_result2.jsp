@@ -9,7 +9,7 @@
 </head>
 <body>
 <c:forEach var="a" items="${lists}">
-	${a}
+	${a};
 </c:forEach>
 </body>
 </html>
