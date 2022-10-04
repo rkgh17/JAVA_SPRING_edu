@@ -38,7 +38,7 @@ public class mycontroller {
 		
 
 		if(result.hasErrors()) {
-			if((contentDto.getLoginid().equals(contentDto.getUserid())) || (contentDto.getLoginpasscode().equals(contentDto.getUserpasscode()))) {
+			if((contentDto.getLoginid().equals(contentDto.getUserid())) && (contentDto.getLoginpasscode().equals(contentDto.getUserpasscode()))) {
 				return "createDonePage";
 			}
 			return "loginForm";
