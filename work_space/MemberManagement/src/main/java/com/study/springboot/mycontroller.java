@@ -28,20 +28,31 @@ public class mycontroller {
 	@RequestMapping("/create")
 	public String insert2(@ModelAttribute("dto") @Valid ContentDto contentDto, BindingResult result, Model model) {
 		String page = "createDonePage";
-		System.out.println(contentDto);
-		String errmsg="";
 		
+		String errmsg="";
+		contentDto.setUserid("aaa");
+		contentDto.setUserpasscode("1234");
+		contentDto.setMobile("1111");
+		contentDto.setName("AAA");
+		System.out.println(contentDto);
+		
+
 		if(result.hasErrors()) {
+			if((contentDto.getLoginid().equals(contentDto.getUserid())) || (contentDto.getLoginpasscode().equals(contentDto.getUserpasscode()))) {
+				return "createDonePage";
+			}
 			return "loginForm";
 		}
 		
 		
 		if(contentDto.getLoginid()!= contentDto.getUserid()) {
 			errmsg="아이디가 존재하지 않습니다.<br>";
+			System.out.println(errmsg);
 			return "loginForm";
 		}
 		if(contentDto.getLoginpasscode()!= contentDto.getUserpasscode()) {
-			errmsg="비밀번호가 존재하지 않습니다..<br>";
+			errmsg="비밀번호가 존재하지 않습니다.<br>";
+			System.out.println(errmsg);
 			return "loginForm";
 		}
 		return page;
@@ -55,12 +66,10 @@ public class mycontroller {
 	@RequestMapping("/register")
 	public String insert4(@ModelAttribute("dto") @Valid ContentDto contentDto, BindingResult result, Model model) {
 		String page = "registerPage";
-		System.out.println(contentDto);
 		String errmsg="";
-		String ex1 = contentDto.getLoginid() ;
-		String ex2 = contentDto.getLoginpasscode();
-		ex1="a";
-		ex2="b";
+		contentDto.setLoginid("a");
+		contentDto.setLoginpasscode("b");
+		System.out.println(contentDto);
 		
 		
 		if(result.hasErrors()) {
