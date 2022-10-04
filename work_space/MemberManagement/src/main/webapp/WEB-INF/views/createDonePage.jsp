@@ -9,6 +9,6 @@
 <body>
 로그인 성공!
 <br>
-Id : ${dto.writer}
+Id : ${dto.userid}
 </body>
 </html>

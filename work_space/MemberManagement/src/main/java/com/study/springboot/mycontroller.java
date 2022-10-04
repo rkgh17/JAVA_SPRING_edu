@@ -19,7 +19,7 @@ public class mycontroller {
 	
 	@RequestMapping("/insertForm")
 	public String insert1(){
-		return "createPage";
+		return "loginForm";
 	}
 	
 	@RequestMapping("/create")
@@ -29,22 +29,46 @@ public class mycontroller {
 		String errmsg="";
 		
 		if(result.hasErrors()) {
-			if(result.getFieldError("writer")!=null) {
-				System.out.println("1 : "+result.getFieldError("writer").getDefaultMessage());
-				errmsg+=result.getFieldError("writer").getDefaultMessage();
+			if(result.getFieldError("loginid")!=null) {
+				System.out.println("1 : "+result.getFieldError("loginid").getDefaultMessage());
+				errmsg+=result.getFieldError("loginid").getDefaultMessage();
 			}
-			if(result.getFieldError("content")!=null) {
-				System.out.println("2 : "+result.getFieldError("content").getDefaultMessage());
-				errmsg+=result.getFieldError("content").getDefaultMessage();
+			if(result.getFieldError("loginpasscode")!=null) {
+				System.out.println("2 : "+result.getFieldError("loginpasscode").getDefaultMessage());
+				errmsg+=result.getFieldError("loginpasscode").getDefaultMessage();
 			}
 			model.addAttribute("error_message",errmsg);
 //			xxx.setError_message(errmsg);
-			page = "createPage";
+			page = "loginForm";
 		}
 		return page;
 	}
+	
 	@RequestMapping("/signup")
 	public String insert3() {
-		return null;
+		return "signupPage";
 	}
+	
+	@RequestMapping("/register")
+	public String insert4(@ModelAttribute("dto") @Valid ContentDto contentDto, BindingResult result, Model model) {
+		String page = "registerPage";
+		System.out.println(contentDto);
+		String errmsg="";
+		
+		if(result.hasErrors()) {
+			if(result.getFieldError("userid")!=null) {
+				System.out.println("1 : "+result.getFieldError("userid").getDefaultMessage());
+				errmsg+=result.getFieldError("userid").getDefaultMessage();
+			}
+			if(result.getFieldError("userpasscode")!=null) {
+				System.out.println("2 : "+result.getFieldError("userpasscode").getDefaultMessage());
+				errmsg+=result.getFieldError("userpasscode").getDefaultMessage();
+			}
+			model.addAttribute("error_message",errmsg);
+//			xxx.setError_message(errmsg);
+			page = "registerPage";
+		}
+		return page;
+	}
+	
 }
