@@ -26,12 +26,15 @@ public class mycontroller {
 	
 
 	@RequestMapping("/create")
-	public String insert2(@ModelAttribute("dto") @Valid ContentDto contentDto, Model model) {
+	public String insert2(@ModelAttribute("dto") @Valid ContentDto contentDto, BindingResult result, Model model) {
 		String page = "createDonePage";
 		System.out.println(contentDto);
 		String errmsg="";
-		contentDto.getLoginid();
-		contentDto.getLoginpasscode();
+		
+		if(result.hasErrors()) {
+			return "loginForm";
+		}
+		
 		
 		if(contentDto.getLoginid()!= contentDto.getUserid()) {
 			errmsg="아이디가 존재하지 않습니다.<br>";

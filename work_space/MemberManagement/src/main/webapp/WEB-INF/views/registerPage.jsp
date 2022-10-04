@@ -7,10 +7,12 @@
 <title>Registger</title>
 </head>
 <body>
+<form action="/create">
 Id : ${dto.userid}<br>
 Password : ${dto.userpasscode}<br>
 Name : ${dto.name}<br>
 Mobile : ${dto.mobile}<br>
-<input type="button" value="확인" onclick="location='loginForm'">
+<input type=submit value="확인" >
+</form>
 </body>
 </html>
