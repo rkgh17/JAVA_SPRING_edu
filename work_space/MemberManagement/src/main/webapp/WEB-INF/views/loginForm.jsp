@@ -9,8 +9,8 @@
 <body>
 ${error_message}
 <form action="/create">
- 아이디	: <input type = text name=writer value="${dto.userid}"><br>
- 비밀번호 	: <input type = password name=content value="${dto.userpasscode}"><br>
+ 아이디	: <input type = text name=loginid value="${dto.loginid}"><br>
+ 비밀번호 	: <input type = password name=loginpasscode value="${dto.loginpasscode}"><br>
 &nbsp;
 <input type=submit value='Login'>&nbsp;
 <input type=reset value='비우기'><br><br>

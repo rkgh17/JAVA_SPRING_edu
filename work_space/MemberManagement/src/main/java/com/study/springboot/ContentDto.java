@@ -15,21 +15,12 @@ public class ContentDto {
 	@Size(min=3, max=10, message="아이디는 3~10자리")
 	private String userid;
 	
-	@NotNull(message="아이디를 입력하세요.")
-	@NotEmpty(message="아이디를 입력하세요.")
-	@Size(min=3, max=10, message="아이디는 3~10자리")
 	private String loginid;
 	
 	@NotNull(message="비밀번호를 입력하세요")
 	@NotEmpty(message="비밀번호를 입력하세요")
 	private String userpasscode;
 	
-	@NotNull(message="비밀번호확인을 입력하세요")
-	@NotEmpty(message="비밀번호확인을 입력하세요")
-	private String userpasscode2;
-	
-	@NotNull(message="비밀번호를 입력하세요")
-	@NotEmpty(message="비밀번호를 입력하세요")
 	private String loginpasscode;
 	
 	@NotNull(message="실명을 입력하세요.")
