@@ -8,13 +8,17 @@
 </head>
 <body>
 ${error_message}
+<table>
 <form action="/create">
- 아이디	: <input type = text name=loginid value="${dto.loginid}"><br>
- 비밀번호 	: <input type = password name=loginpasscode value="${dto.loginpasscode}"><br>
-&nbsp;
-<input type=submit value='Login'>&nbsp;
-<input type=reset value='비우기'><br><br>
+<tr><td allign=right>아이디</td><td><input type = text name=loginid value="${dto.loginid}">
+<tr><td allign=right>비밀번호</td><td><input type = password name=loginpasscode value="${dto.loginpasscode}">
+<tr><td colspan=3>
+<input type=submit value='로그인'>
+<input type=reset value='비우기'>
 <input type=button value='회원가입' onclick="location='signup'">
+</td>
+&nbsp;
 </form>
+</table>
 </body>
 </html>

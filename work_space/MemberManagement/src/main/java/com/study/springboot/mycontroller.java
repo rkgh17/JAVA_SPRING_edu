@@ -34,6 +34,10 @@ public class mycontroller {
 		contentDto.setUserpasscode("1234");
 		contentDto.setMobile("1111");
 		contentDto.setName("AAA");
+		
+		contentDto.setLoginid("");
+		contentDto.setLoginpasscode("");
+		
 		System.out.println(contentDto);
 		
 
