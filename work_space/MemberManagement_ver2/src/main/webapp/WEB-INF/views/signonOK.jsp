@@ -8,7 +8,7 @@
 <title>Registger</title>
 </head>
 <body>
-<form action="/doLogin" method=post>
+<form action="/login" method=post>
 Id : ${loginid}<br>
 Password : ${passcode}<br>
 Name : ${name}<br>

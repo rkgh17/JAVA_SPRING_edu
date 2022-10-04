@@ -31,6 +31,8 @@ public class mycontroller {
 		String loginid=req.getParameter("loginid");
 		String passcode=req.getParameter("passcode");
 		HttpSession session=req.getSession();
+		System.out.println(loginid);
+		System.out.println(passcode);
 		
 		if(loginid.equals(session.getAttribute("userid")) && passcode.equals(session.getAttribute("passcd"))) {
 			model.addAttribute("loginid",loginid);
