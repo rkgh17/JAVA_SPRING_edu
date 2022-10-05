@@ -5,17 +5,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>list</title>
+<title>게시글 목록</title>
 </head>
 <body>
 <table border=1>
-<c:forEach var="worker" items="${list}">
+<c:forEach var="post" items="${list}">
 <tr>
-	<td>${worker.employee_id }</td>
-	<td>${worker.emp_name}</td>
-	<td>${worker.manager_id}</td>
+	<td>${post.id }</td>
+	<td>${post.created}</td>
+	<td><a href='/view/${post.id}'>${post.title}</a></td>
+	<td>${post.writer}</td>
 </tr>
 </c:forEach>
 </table>
+<input type=button name=btnAddNew id=btnAddNew onclick="document.location='/insertForm';" value='새글쓰기'/>
 </body>
 </html>

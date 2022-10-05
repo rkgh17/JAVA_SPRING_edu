@@ -5,8 +5,9 @@ import lombok.Data;
 @Data
 public class MyDTO {
 	
-	private int employee_id;
-	private String emp_name;
-	private int manager_id;
+	private int id;
+	private String title;
+	private String writer;
+	private String created;
 
 }
