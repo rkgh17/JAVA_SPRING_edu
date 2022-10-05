@@ -1,5 +1,10 @@
 package com.study.springboot.jdbc;
 
-public class MyDao {
+import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface MyDAO {
+	ArrayList<MyDTO> list();
 }
