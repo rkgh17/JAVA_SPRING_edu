@@ -14,8 +14,8 @@
 <tr><td align=right>내용</td><td>${post.content}</textarea></td></tr>
 <tr><td align=right>작성자</td><td>${post.writer}</td></tr>
 <tr><td colspan=2 align=center>
-	<input type=button value='수정' name=btnUpdate id=btnUpdate onclick="document.location='/updateForm';">&nbsp;
-	<input type=reset value='삭제' name=btnDelete id=btnDelete></td></tr>
+	<input type=button value='수정' name=btnUpdate id=btnUpdate onclick="document.location='/updateForm/${post.id}';">&nbsp;
+	<input type=reset value='삭제' name=btnDelete id=btnDelete onclick="document.location='/delete/${post.id}';"></td></tr>
 </table>
 <a href='/list'>목록보기</a>
 </body>

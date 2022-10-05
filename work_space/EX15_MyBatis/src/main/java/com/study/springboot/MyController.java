@@ -44,13 +44,33 @@ public class MyController {
 	}
 	
 	@RequestMapping("/view/{id}")
-	public String view(@PathVariable String id, Model model) {
-		int bbsid= Integer.parseInt(id);
+	public String view(@PathVariable int id, Model model) {
+//		int bbsid= Integer.parseInt(id);
 //		bbsDTO bdto = mydao.view(bbsid);
 //		model.addAttribute("post",bdto); or
-		model.addAttribute("post",mydao.view(bbsid));
-		return "view";
-		
-		
+		model.addAttribute("post",mydao.view(id));
+		return "view";	
+	}
+	
+	@RequestMapping("/delete/{id}")
+	public String view(@PathVariable int id) {
+		mydao.delete(id);
+		return "redirect:/list";
+	}
+	
+	@RequestMapping("/updateForm/{id}")
+	public String updateForm(@PathVariable int id, Model model) {
+		model.addAttribute("post",mydao.view(id));
+		return "update";
+	}
+	
+	@RequestMapping("/update")
+	public String update(HttpServletRequest req) {
+		int id = Integer.parseInt(req.getParameter("id"));
+		String title = req.getParameter("title");
+		String content=req.getParameter("content");
+		String writer=req.getParameter("writer");
+		mydao.update(id, title, content, writer);
+		return "redirect:/list";
 	}
 }

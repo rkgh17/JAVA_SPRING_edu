@@ -9,12 +9,20 @@
 	</select>
 	
 	<insert id="insert">
-		insert into bbs values(seq_bbsid.nextval,#{param1},#{param2},#{param3},to_char(sysdate,'YYYY-MM-DD HH24:MI:SS'))
+		insert into bbs values(seq_bbsid.nextval,#{param1},#{param2},#{param3},to_char(sysdate,'YYYYMMDDHHMISS'))
 	</insert>
 	
 	<select id = "view" resultType="com.study.springboot.jdbc.bbsDTO">
 		select id,title,content,writer,created from bbs where id=#{param1}
 	</select>
+	
+	<delete id="delete">
+		delete from bbs where id=#{param1}
+	</delete>
+	
+	<update id="update">
+		update bbs set title=#{param2}, content=#{param3}, writer=#{param4} where id=#{param1}
+	</update>
 </mapper>
 
 <!-- 
