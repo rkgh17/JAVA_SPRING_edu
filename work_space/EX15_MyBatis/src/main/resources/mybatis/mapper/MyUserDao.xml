@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.springboot.jdbc.MyDAO">
+	<select id = "list" resultType="com.study.springboot.jdbc.MyDTO">
+		select employee_id, emp_name, manager_id from employees
+	</select>
+</mapper>
+
+<!-- 
+전체 문법 / select : 
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DAO(interface)의 경로 + 이름">
+	<select id = "DAO의 메소드명" resultType="DTO(class)의 경로+이름">
+		select문
+	</select>
+</mapper>
+
+
+insert / update / delete :
+	<insert/update/delete id="DAO의 메소드명">
+		insert/update/delete sql문 #{paramN} </insert> -> 이 매개변수들을 직접 써줘야 한다. 
+		
+	Mapper에 insert/update/delete메소드를 만들어준다.
+	
+	void 메소드명(param1, param2, .... paramN)
+
+
+
+ -->

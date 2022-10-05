@@ -7,6 +7,6 @@ public class MyDTO {
 	
 	private int employee_id;
 	private String emp_name;
-	private int manger_id;
+	private int manager_id;
 
 }
