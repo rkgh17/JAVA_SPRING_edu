@@ -38,14 +38,14 @@ $(document)
 .ready(function(){
 	// SELECT
 	getList();
-	$.post('http://localhost:8081/loadMenu',{},function(rcv){
-		console.log(rcv);
-		for(i=0; i<rcv.length ; i++){
-			let str = '<option>'+rcv[i]['id']+','+rcv[i]['name']+','+rcv[i]['price']+'</option>';
-			$('#selMenu').append(str);
-		}
-	},'json');}
-)
+	// $.post('http://localhost:8081/loadMenu',{},function(rcv){
+	// 	console.log(rcv);
+	// 	for(i=0; i<rcv.length ; i++){
+	// 		let str = '<option>'+rcv[i]['id']+','+rcv[i]['name']+','+rcv[i]['price']+'</option>';
+	// 		$('#selMenu').append(str);
+	// 	}
+	// },'json');
+})
 
 .on('click','#btnAdd',function(){
 	if( $('#name').val()=='' || $('#name').val()==null ){

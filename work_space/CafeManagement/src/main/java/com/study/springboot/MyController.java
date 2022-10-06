@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.study.springboot.jdbc.MenuDTO;
 import com.study.springboot.jdbc.iCafe;
+import com.study.springboot.jdbc.orderDTO;
 
 @Controller
 public class MyController {
@@ -67,6 +68,17 @@ public class MyController {
 	@ResponseBody
 	public String doUpdateMenu(HttpServletRequest req) {
 		cafe.updateMenu(Integer.parseInt(req.getParameter("id")), req.getParameter("name"), Integer.parseInt(req.getParameter("price")));
+		return "ok";
+	}
+
+//order
+	
+	@RequestMapping("/selOrder")
+	@ResponseBody
+	public String doselOrder(HttpServletRequest req) {
+		System.out.println("doselOrder");
+		cafe.selOrder("name",Integer.parseInt(req.getParameter("qty")),Integer.parseInt(req.getParameter("price")));
+
 		return "ok";
 	}
 }

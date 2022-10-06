@@ -11,4 +11,6 @@ public interface iCafe {
 	void addMenu(String name, int price);
 	void deleteMenu(int id);
 	void updateMenu(int id,String name, int price);
+	
+	String selOrder(String name, int qty, int price);
 }

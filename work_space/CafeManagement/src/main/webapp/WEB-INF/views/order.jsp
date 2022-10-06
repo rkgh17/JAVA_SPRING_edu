@@ -60,14 +60,25 @@ $(document)
 .on('change','#qty',function(){
 	let price = parseInt($('#price').val());
 	let qty =  parseInt($('#qty').val());
-	console.log(price);
-	console.log(qty);
-	//price = price/qty;
-	
-	let qty = price * qty;
-	console.log(qty);
+	//console.log(price);
+	//console.log(qty);
+	if(qty>=3){
+		price = price/(qty-1);
+	}
+	qty = price * qty;
+	//console.log(qty);
 	$('#price').val(qty);
-});
+})
+.on('click','#btnOrder',function(){
+	$.post('http://localhost:8081/selOrder',{},function(rcv){
+		console.log(rcv);
+		System.out.println(rcv);
+		/*for(i=0; i<rcv.length ; i++){
+			let str = '<option>'+rcv[i]['name']+','+rcv[i]['qty']+','+rcv[i]['price']+'</option>';
+			$('#selOrder').append(str);
+		}*/
+	},'json');}
+);
 
 
 
