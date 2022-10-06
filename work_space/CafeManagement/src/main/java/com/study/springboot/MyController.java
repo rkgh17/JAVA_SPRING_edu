@@ -55,6 +55,13 @@ public class MyController {
 //		String name=;
 //		int price=;
 		cafe.addMenu(req.getParameter("name"), Integer.parseInt(req.getParameter("price")));
+		return "ok";//자바스크립트의 함수를 실행시키기 위해
+	}
+	
+	@RequestMapping("/deleteMenu")
+	@ResponseBody
+	public String doDeleteMenu(HttpServletRequest req) {
+		cafe.deleteMenu(Integer.parseInt(req.getParameter("id")));
 		return "ok";
 	}
 }

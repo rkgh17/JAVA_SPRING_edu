@@ -54,25 +54,33 @@ $(document)
 			function(rcv){
 				getList();
 	},'text');
+	return false;
 })
-.on('click','#sellMenu option',function(){
+.on('click','#selMenu option',function(){
 	//현재의 옵션
 	//$(this).val() == 옵션값의 벨류
 	let optstr = $(this).text();
 	let ar=optstr.split(',');
 	//console.log(ar); // ['id','name','price']
+	$('#id').val($.trim(ar[0]));
 	$('#name').val($.trim(ar[1]));
 	$('#price').val($.trim(ar[2]));
 	return false;
 })
 .on('click','#btnEmpty',function(){
-	$('#name,#price').val('');
+	$('#id,#name,#price').val('');
 	return false;
 })
 .on('click','#btnDelete',function(){
+	if($('#id').val() == ''){
+		alert('삭제할 메뉴를 선택하십시오.'); return false;
+	}
 	//if(confirm('정말 삭제하시겠습니까?')==false) return false;
 	if(!confirm('정말 삭제하시겠습니까?')) return false;
-	
+	$.post('http://localhost:8081/deleteMenu',{id:$('#id').val()}, function(rcv){
+		getList();
+	},'text');
+	return false;
 });
 
 

@@ -9,4 +9,5 @@ import org.apache.ibatis.annotations.Mapper;
 public interface iCafe {
 	ArrayList<MenuDTO> loadMenu();
 	void addMenu(String name, int price);
+	void deleteMenu(int id);
 }
