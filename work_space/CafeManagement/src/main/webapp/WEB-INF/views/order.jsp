@@ -22,7 +22,7 @@
 	<td style='vertical-align:top;border:1px solid blue;'>
 		<table>
 		<tr><td>메뉴</td><td><input type=text id=name readonly size=20></td></tr>
-		<tr><td>수량</td><td><input type=number id=qty min=1 max=99 onchange='qty(this)'>잔</td></tr>
+		<tr><td>수량</td><td><input type=number id=qty min=1 max=99>잔</td></tr>
 		<tr><td>가격</td><td><input type=number id=price min=0 max=9999>원</td></tr>
 		<tr><td colspan=2 align=center>
 			<input type=button id=btnOrder value='주문'>&nbsp;
@@ -56,7 +56,17 @@ $(document)
 	$('#name').val($.trim(ar[1]));
 	$('#price').val(ar[2]);
 	$('#qty').val(1);
-	return false;
+})
+.on('change','#qty',function(){
+	let price = parseInt($('#price').val());
+	let qty =  parseInt($('#qty').val());
+	console.log(price);
+	console.log(qty);
+	//price = price/qty;
+	
+	let qty = price * qty;
+	console.log(qty);
+	$('#price').val(qty);
 });
 
 
@@ -67,12 +77,12 @@ $(document)
 
 
 
-function qty(obj){
+/*function qty(obj){
 	let selectnum=$(obj).val();
 	let optstr = $(this).text();
 	let ar=optstr.split(',');
 	$('#price').val();
-}
+}*/
 
 function getList(){
 	$.post('http://localhost:8081/loadMenu',{},function(rcv){
