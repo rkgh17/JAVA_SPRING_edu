@@ -75,10 +75,8 @@ public class MyController {
 	
 	@RequestMapping("/selOrder")
 	@ResponseBody
-	public String doselOrder(HttpServletRequest req) {
-		System.out.println("doselOrder");
-		cafe.selOrder("name",Integer.parseInt(req.getParameter("qty")),Integer.parseInt(req.getParameter("price")));
-
+	public String doselOrder() {
 		return "ok";
+		
 	}
 }

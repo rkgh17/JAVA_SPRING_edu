@@ -32,7 +32,7 @@
 	<td style='vertical-align:top;border:1px solid blue;'>
 		<table>
 		<tr><td>총금액</td><td><input type=text id=total readonly size=5>원</td></tr>
-		<tr><td>모바일번호</td><td><input type=text id=mobil size=15></td></tr>
+		<tr><td>모바일번호</td><td><input type=text id=mobile size=15></td></tr>
 		<tr><td colspan=2>&nbsp;</td></tr>
 		<tr><td colspan=2 align=center>
 			<input type=button id=btnComplete value='주문완료'>&nbsp;
@@ -52,7 +52,7 @@ $(document)
 .on('click','#selMenu option',function(){
 	let optstr = $(this).text();
 	let ar=optstr.split(',');
-	$('#id').val($.trim(ar[0]));
+	//$('#id').val($.trim(ar[0]));
 	$('#name').val($.trim(ar[1]));
 	$('#price').val(ar[2]);
 	$('#qty').val(1);
@@ -70,15 +70,36 @@ $(document)
 	$('#price').val(qty);
 })
 .on('click','#btnOrder',function(){
-	$.post('http://localhost:8081/selOrder',{},function(rcv){
-		console.log(rcv);
-		System.out.println(rcv);
-		/*for(i=0; i<rcv.length ; i++){
-			let str = '<option>'+rcv[i]['name']+','+rcv[i]['qty']+','+rcv[i]['price']+'</option>';
-			$('#selOrder').append(str);
-		}*/
-	},'json');}
-);
+	let name = $('#name').val();
+	let qty = $('#qty').val();
+	let price = $('#price').val();
+	let str = '<option>'+name+','+qty+','+price+'</option>';
+	$('#selOrder').append(str);
+	$('#name,#qty,#price').val('');
+	
+	
+	
+	/*$('#selOrder option').each(function(){
+		let str=$(this).text();
+		//console.log(str);
+		let ar=str.split(',');
+		//console.log(ar);
+		//console.log(ar[2]);
+		
+		let total=0;
+		
+		for(let i=0 ; i<ar.length ; i++){
+
+			//console.log(ar);
+		}
+		$('#total').val(total);
+	});*/
+	
+})
+.on('click','#btnEmpty',function(){
+	$('#name,#qty,#price').val('');
+	return false;
+});
 
 
 
@@ -103,7 +124,7 @@ function getList(){
 			$('#selMenu').append(str);
 		}
 		//$('#name,#price').val('');
-		$('#btnEmpty').trigger('click');
+		//$('#btnEmpty').trigger('click');
 	},'json');
 }
 

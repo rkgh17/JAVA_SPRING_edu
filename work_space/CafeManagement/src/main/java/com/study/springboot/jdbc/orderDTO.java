@@ -7,6 +7,4 @@ public class orderDTO {
 	private String name;
 	private int qty;
 	private int price;
-
-
 }
