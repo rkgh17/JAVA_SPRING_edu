@@ -7,10 +7,10 @@
 <title>카페주문관리 - 메뉴관리</title>
 </head>
 <body>
-<table width=100%>
-	<tr><td width='33%'><a href='/menu'><h1>메뉴관리</h1></a></td>
-		<td width='33%'><a href='/order'><h1>주문관리</h1></a></td>
-		<td width='33%'><a href='/sales'><h1>실적관리</h1></a></td>
+<table style='width:100%;border:1px solid green;'>
+	<tr><td style='width:33%;text-align:center;'><h3>메뉴관리</h3></td>
+		<td style='width:33%;text-align:center;'><a href='/order'><h3>주문관리</h3></a></td>
+		<td style='width:33%;text-align:center;'><a href='/sales'><h3>실적관리</h3></a></td>
 	</tr>
 </table>
 <table align=center>
