@@ -7,4 +7,8 @@
 	<select id = "loadMenu" resultType="com.study.springboot.jdbc.MenuDTO">
 		select id, name, price from menu order by id
 	</select>
+	
+	<insert id="addMenu">
+		insert into menu values(seq_menu.nextval,#{param1},#{param2})
+	</insert>
 </mapper>
