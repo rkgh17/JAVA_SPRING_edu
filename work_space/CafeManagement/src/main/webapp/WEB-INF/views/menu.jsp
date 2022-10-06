@@ -13,12 +13,13 @@
 		<select id=selMenu style='width:200px' size=20></select>
 	</td>
 	<td>
+		<input type=hidden id=id> <%-- primary key 보관 --%>
 		<table>
 		<tr><td align=right>메뉴명</td><td><input type=text id=name></td></tr>
 		<tr><td align=right>가격</td><td><input type=number id=price>원</td></tr>
 		<tr><td colspan=2 align=center>
 			<input type=button id=btnAdd value='등록'>&nbsp;
-			<input type=reset id=btnEmpty value='비우기'>&nbsp;
+			<input type=button id=btnEmpty value='비우기'>&nbsp;
 			<input type=button id=btnDelete value='삭제'></td></tr>
 		</table>
 	</td>
@@ -56,8 +57,25 @@ $(document)
 })
 .on('click','#sellMenu option',function(){
 	//현재의 옵션
-	$(this)
+	//$(this).val() == 옵션값의 벨류
+	let optstr = $(this).text();
+	let ar=optstr.split(',');
+	//console.log(ar); // ['id','name','price']
+	$('#name').val($.trim(ar[1]));
+	$('#price').val($.trim(ar[2]));
+	return false;
+})
+.on('click','#btnEmpty',function(){
+	$('#name,#price').val('');
+	return false;
+})
+.on('click','#btnDelete',function(){
+	//if(confirm('정말 삭제하시겠습니까?')==false) return false;
+	if(!confirm('정말 삭제하시겠습니까?')) return false;
+	
 });
+
+
 
 function getList(){
 	$.post('http://localhost:8081/loadMenu',{},function(rcv){
@@ -66,6 +84,8 @@ function getList(){
 			let str = '<option>'+rcv[i]['id']+','+rcv[i]['name']+','+rcv[i]['price']+'</option>';
 			$('#selMenu').append(str);
 		}
+		//$('#name,#price').val('');
+		$('#btnEmpty').trigger('click');
 	},'json');
 }
 //AJAX

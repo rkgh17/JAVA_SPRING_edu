@@ -11,4 +11,8 @@
 	<insert id="addMenu">
 		insert into menu values(seq_menu.nextval,#{param1},#{param2})
 	</insert>
+	
+	<delete id="deleteMenu">
+		delete from menu where id=#{param1}
+	</delete>
 </mapper>
