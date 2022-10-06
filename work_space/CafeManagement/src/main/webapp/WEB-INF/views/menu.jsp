@@ -7,7 +7,13 @@
 <title>카페주문관리 - 메뉴관리</title>
 </head>
 <body>
-<table>
+<table width=100%>
+	<tr><td width='33%'><a href='/menu'><h1>메뉴관리</h1></a></td>
+		<td width='33%'><a href='/order'><h1>주문관리</h1></a></td>
+		<td width='33%'><a href='/sales'><h1>실적관리</h1></a></td>
+	</tr>
+</table>
+<table align=center>
 <tr>
 	<td>
 		<select id=selMenu style='width:200px' size=20></select>
@@ -50,10 +56,18 @@ $(document)
 		alert('가격은 반드시 숫자로 입력해야 합니다.');
 		return false;
 	}
-	$.post('http://localhost:8081/addMenu',{name:$('#name').val(),price:$('#price').val()},
+	
+	if( $('#id').val()==''){//insert
+		$.post('http://localhost:8081/addMenu',{name:$('#name').val(),price:$('#price').val()},
 			function(rcv){
 				getList();
 	},'text');
+	}else{ //update
+		$.post('http://localhost:8081/updateMenu',{ id:$('#id').val(),name:$('#name').val(),price:$('#price').val()},
+				function(rcv){
+			getList();
+		},'text');
+	}
 	return false;
 })
 .on('click','#selMenu option',function(){

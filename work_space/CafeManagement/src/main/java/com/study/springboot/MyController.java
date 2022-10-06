@@ -19,16 +19,14 @@ public class MyController {
 	
 	@Autowired
 	private iCafe cafe;
-	
 	@RequestMapping("/")
-	public @ResponseBody String root() {
-		return "CafeManagemen";
-	}
-	
+	public @ResponseBody String root() {return "CafeManagemen";}
 	@RequestMapping("/menu")
-	public String doMenu() {
-		return "menu";
-	}
+	public String doMenu() {return "menu";}
+	@RequestMapping("/order")
+	public String doOrder() {return "order";}
+	@RequestMapping("/sales")
+	public String doSales() {return "sales";}
 	
 	@RequestMapping("/loadMenu")
 	@ResponseBody
@@ -62,6 +60,13 @@ public class MyController {
 	@ResponseBody
 	public String doDeleteMenu(HttpServletRequest req) {
 		cafe.deleteMenu(Integer.parseInt(req.getParameter("id")));
+		return "ok";
+	}
+	
+	@RequestMapping("/updateMenu")
+	@ResponseBody
+	public String doUpdateMenu(HttpServletRequest req) {
+		cafe.updateMenu(Integer.parseInt(req.getParameter("id")), req.getParameter("name"), Integer.parseInt(req.getParameter("price")));
 		return "ok";
 	}
 }
