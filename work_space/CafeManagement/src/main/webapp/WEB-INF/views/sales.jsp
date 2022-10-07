@@ -41,7 +41,7 @@ $(document)
 	
 	$.post('http://localhost:8081/getSalesList',{start:start,end:end},function(rcv){
 		for(i=0; i<rcv.length ; i++){
-			let str = '<option>'+rcv[i]['created']+' : '+rcv[i]['menu']+' , '+rcv[i]['qty']+' , '+rcv[i]['price']+'원</option>';
+			let str = '<option>'+rcv[i]['created']+' : '+rcv[i]['menu']+' , '+rcv[i]['qty']+'잔 , '+rcv[i]['price']+'원</option>';
 			$('#selSales').append(str);
 		}
 	},'json');
@@ -50,6 +50,6 @@ $(document)
 		$('#outgo').val(parseInt(rcv));
 	},'text');
 	
-})
+});
 </script>
 </html>
