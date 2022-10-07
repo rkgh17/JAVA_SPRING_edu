@@ -79,6 +79,8 @@ public class MyController {
 //		String name=;
 //		int price=;
 		cafe.addOrder(req.getParameter("menu"),Integer.parseInt(req.getParameter("qty")),Integer.parseInt(req.getParameter("price")),req.getParameter("mobile"));
+		//iOrder, order를 추가했을 경우
+		//order.addOrder(req.getParameter("menu"),Integer.parseInt(req.getParameter("qty")),Integer.parseInt(req.getParameter("price")),req.getParameter("mobile"));
 		return "ok";//자바스크립트의 함수를 실행시키기 위해
 	}
 	

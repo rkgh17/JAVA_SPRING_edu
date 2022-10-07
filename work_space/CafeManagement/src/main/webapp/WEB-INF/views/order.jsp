@@ -121,7 +121,28 @@ $(document)
 		let str=$(this).text();
 		//console.log(str);
 		let ar=str.split(',');
-		$.post('http://localhost:8081/addOrder',{ menu:$.trim(ar[0]),qty:$.trim(ar[1]),price:$.trim(ar[2]),mobile:$('#mobile').val()},
+		/*선생님 방식
+		ar[1]=ar[1].substr(2);
+		ar[2]=$.trim(ar[2]);
+		$.post('http://localhost:8081/addOrder',
+				{ menu:$.trim(ar[0]),
+					qty:ar[1],
+					price:ar[2],
+					mobile:$('#mobile').val()},
+				function(rcv){
+						$('#lblcomment').text(str+" inserted") -> 확인용 라벨 추가 -> 쓰레드가 같이 돌기 때문에 누가 올지 모름. Asynchronous
+						setTimeout(function(){
+							$('#lblcomment').text('');
+						},5000) -> 5초 후 라벨 없어짐
+		},'text');
+		후에 iOrder.java -> 인터페이스
+		order.xml -> xml
+		*/
+		$.post('http://localhost:8081/addOrder',
+				{ menu:$.trim(ar[0]),
+					qty:$.trim(ar[1]),
+					price:$.trim(ar[2]),
+					mobile:$('#mobile').val()},
 				function(rcv){
 			//$('#selSales').append();
 		},'text');
