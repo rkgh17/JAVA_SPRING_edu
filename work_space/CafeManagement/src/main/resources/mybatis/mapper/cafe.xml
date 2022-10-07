@@ -19,4 +19,8 @@
 	<update id="updateMenu">
 		update menu set name=#{param2},price=#{param3} where id=#{param1}
 	</update>
+	
+	<insert id="addOrder">
+		insert into sold_list values(#{param4},#{param1},#{param2},#{param3},to_char(sysdate,'YYYYMMDDHHMISS'))
+	</insert>
 </mapper>

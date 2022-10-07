@@ -73,10 +73,14 @@ public class MyController {
 
 //order
 	
-	@RequestMapping("/selOrder")
+	@RequestMapping("/addOrder")
 	@ResponseBody
-	public String doselOrder() {
-		return "ok";
-		
+	public String doAddOrder(HttpServletRequest req){
+//		String name=;
+//		int price=;
+		cafe.addOrder(req.getParameter("menu"),Integer.parseInt(req.getParameter("qty")),Integer.parseInt(req.getParameter("price")),req.getParameter("mobile"));
+		return "ok";//자바스크립트의 함수를 실행시키기 위해
 	}
+	
+	
 }

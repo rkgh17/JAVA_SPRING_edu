@@ -4,7 +4,8 @@ import lombok.Data;
 
 @Data
 public class orderDTO {
-	private String name;
+	private String menu;
 	private int qty;
 	private int price;
+	private String mobile;
 }

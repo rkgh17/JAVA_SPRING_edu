@@ -23,7 +23,8 @@
 		<table>
 		<tr><td>메뉴</td><td><input type=text id=name readonly size=20></td></tr>
 		<tr><td>수량</td><td><input type=number id=qty min=1 max=99>잔</td></tr>
-		<tr><td>가격</td><td><input type=number id=price min=0 max=9999>원</td></tr>
+		<tr><td>가격</td><td><input type=number id=price min=0 max=9999>원
+							<input type=hidden id=net></td></tr>
 		<tr><td colspan=2 align=center>
 			<input type=button id=btnOrder value='주문'>&nbsp;
 			<input type=button id=btnEmpty value='비우기'></td></tr>
@@ -44,27 +45,30 @@
 </body>
 <script src='https://code.jquery.com/jquery-3.4.1.js'></script>
 <script>
-let slctp=0; //수량*가격 변수저장용
+//let slctp=0; //수량*가격 변수저장용
 
 $(document)
 .ready(function(){
 	getList();
 })
 
-.on('click','#selMenu option',function(){
+.on('click','#selMenu option',function(){ //익명함수(unnamed function), 콜백함수(call back)
 	let optstr = $(this).text();
 	let ar=optstr.split(',');
 	//$('#id').val($.trim(ar[0]));
 	$('#name').val($.trim(ar[1]));
-	$('#price').val(ar[2]);
+	$('#price,#net').val(ar[2]);
 	$('#qty').val(1);
-	slctp = parseInt(ar[2]);
+
+	//slctp = parseInt(ar[2]);
 })
 .on('change','#qty',function(){
 	//let price = parseInt($('#price').val());
 	let qty =  parseInt($('#qty').val());
-	qty = slctp * qty;
-	$('#price').val(qty);
+	
+	let price = parseInt($('#net').val()) * qty;
+	
+	$('#price').val(price);
 	
 	/* 미완성 코드 : 수량을 줄이면 안돌아감.
 	//console.log(price);
@@ -82,17 +86,23 @@ $(document)
 	let name = $('#name').val();
 	let qty = $('#qty').val();
 	let price = $('#price').val();
-	let str = '<option>'+name+','+qty+','+price+'</option>'; //<option>Latte,1,3000</option>
+	
+	if(name=='' || qty=='' || price==''){
+		alert('빈 값은 넣을 수 없습니다.'); return false;
+	}
+	
+	let str = '<option>'+name+', '+qty+', '+price+'</option>'; //<option>Latte,1,3000</option>
 	$('#selOrder').append(str);
 	$('#name,#qty,#price').val('');
+	
 
 	let total=0;
 	$('#selOrder option').each(function(){
-		let sstr=$(this).text();
-		//console.log(sstr);
-		let arr=sstr.split(',');
-		//console.log(arr);
-		total = total+ parseInt(arr[2]);
+		let str=$(this).text();
+		//console.log(str);
+		let ar=str.split(',');
+		//console.log(ar);
+		total = total+ parseInt(ar[2]);
 	})
 	//console.log(total);
 	$('#total').val(total);
@@ -100,22 +110,26 @@ $(document)
 .on('click','#btnEmpty',function(){
 	$('#name,#qty,#price').val('');
 	return false;
+})
+.on('click','#btnCancel',function(){
+	$('#selOrder option').remove();
+	$('#total,#mobile').val('');
+	return false;
+})
+.on('click','#btnComplete',function(){
+	$('#selOrder option').each(function(){
+		let str=$(this).text();
+		//console.log(str);
+		let ar=str.split(',');
+		$.post('http://localhost:8081/addOrder',{ menu:$.trim(ar[0]),qty:$.trim(ar[1]),price:$.trim(ar[2]),mobile:$('#mobile').val()},
+				function(rcv){
+			//$('#selSales').append();
+		},'text');
+	})
+	$('#selOrder').empty();
+	$('#total,#mobile').val('');
 });
 
-
-
-
-
-
-
-
-
-/*function qty(obj){
-	let selectnum=$(obj).val();
-	let optstr = $(this).text();
-	let ar=optstr.split(',');
-	$('#price').val();
-}*/
 
 function getList(){
 	$.post('http://localhost:8081/loadMenu',{},function(rcv){
@@ -128,7 +142,6 @@ function getList(){
 		//$('#btnEmpty').trigger('click');
 	},'json');
 }
-
 
 </script>
 </html>
