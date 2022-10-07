@@ -131,9 +131,12 @@ $(document)
 					mobile:$('#mobile').val()},
 				function(rcv){
 						$('#lblcomment').text(str+" inserted") -> 확인용 라벨 추가 -> 쓰레드가 같이 돌기 때문에 누가 올지 모름. Asynchronous
-						setTimeout(function(){
+						setTimeout(function(){ //일정시간 후에 한번 실행
+												// clearTimeOut()
 							$('#lblcomment').text('');
 						},5000) -> 5초 후 라벨 없어짐
+						//시간 관련 함수 2 : let regular = setInterval - 일정시간마다 주기적으로 반복 실행
+						//							clearInterval(regular) > clearTimeOut도 문법 똑같음
 		},'text');
 		후에 iOrder.java -> 인터페이스
 		order.xml -> xml

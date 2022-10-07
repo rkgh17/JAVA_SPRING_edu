@@ -21,6 +21,6 @@
 	</update>
 	
 	<insert id="addOrder">
-		insert into sold_list values(#{param4},#{param1},#{param2},#{param3},to_char(sysdate,'YYYYMMDDHHMISS'))
+		insert into sold_list values(#{param4},#{param1},#{param2},#{param3},to_char(sysdate,'YYYYMMDDHH24MISS'))
 	</insert>
 </mapper>

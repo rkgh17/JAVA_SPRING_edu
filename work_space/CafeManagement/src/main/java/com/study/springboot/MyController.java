@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.study.springboot.jdbc.MenuDTO;
+import com.study.springboot.jdbc.SalesDTO;
 import com.study.springboot.jdbc.iCafe;
+import com.study.springboot.jdbc.iSales;
 import com.study.springboot.jdbc.orderDTO;
 
 @Controller
@@ -20,6 +22,8 @@ public class MyController {
 	
 	@Autowired
 	private iCafe cafe;
+	@Autowired
+	private iSales sales;
 	@RequestMapping("/")
 	public @ResponseBody String root() {return "CafeManagemen";}
 	@RequestMapping("/menu")
@@ -82,6 +86,21 @@ public class MyController {
 		//iOrder, order를 추가했을 경우
 		//order.addOrder(req.getParameter("menu"),Integer.parseInt(req.getParameter("qty")),Integer.parseInt(req.getParameter("price")),req.getParameter("mobile"));
 		return "ok";//자바스크립트의 함수를 실행시키기 위해
+	}
+	
+//sales
+	@RequestMapping("/getSalesList")
+	@ResponseBody
+	public String doloadSales(HttpServletRequest req){
+		ArrayList<SalesDTO> mdto = sales.getSalesList(req.getParameter("start"),req.getParameter("end"));
+		JSONArray ja = new JSONArray();
+		for(int i=0; i<mdto.size();i++) {
+			JSONObject jo = new JSONObject();
+			jo.put("start",mdto.get(i).getStart());
+			jo.put("end",mdto.get(i).getEnd());
+			ja.add(jo);
+		}
+		return ja.toJSONString();
 	}
 	
 	
