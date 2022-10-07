@@ -4,6 +4,8 @@ import lombok.Data;
 
 @Data
 public class SalesDTO {
-	private String start;
-	private String end;
+	private String menu;
+	private int qty;
+	private int price;
+	private String created;
 }

@@ -21,7 +21,7 @@
 	</tr>
 	<tr>
 		<td style='vertical-align:top;'>
-			<select id=selSales size=20 style='width:240px;'></select></td>
+			<select id=selSales size=20 style='width:340px;'></select></td>
 	</tr>
 	<tr>
 		<td>매출액 : <input type=number id=outgo>원</td>
@@ -40,8 +40,16 @@ $(document)
 	let end = ($('#end').val()).replace(/-/g, ""); //시작 끝 문자열 변환
 	
 	$.post('http://localhost:8081/getSalesList',{start:start,end:end},function(rcv){
-		
+		for(i=0; i<rcv.length ; i++){
+			let str = '<option>'+rcv[i]['created']+' : '+rcv[i]['menu']+' , '+rcv[i]['qty']+' , '+rcv[i]['price']+'원</option>';
+			$('#selSales').append(str);
+		}
 	},'json');
+	
+	$.post('http://localhost:8081/getTotal',{start:start,end:end},function(rcv){
+		$('#outgo').val(parseInt(rcv));
+	},'text');
+	
 })
 </script>
 </html>

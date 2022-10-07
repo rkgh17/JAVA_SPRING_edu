@@ -92,16 +92,34 @@ public class MyController {
 	@RequestMapping("/getSalesList")
 	@ResponseBody
 	public String doloadSales(HttpServletRequest req){
-		ArrayList<SalesDTO> mdto = sales.getSalesList(req.getParameter("start"),req.getParameter("end"));
+		String start = req.getParameter("start");
+		String end = req.getParameter("end");
+		
+		ArrayList<SalesDTO> mdto = sales.getSalesList(start,end);
+		System.out.println("JSONArray making");
 		JSONArray ja = new JSONArray();
 		for(int i=0; i<mdto.size();i++) {
 			JSONObject jo = new JSONObject();
-			jo.put("start",mdto.get(i).getStart());
-			jo.put("end",mdto.get(i).getEnd());
+			jo.put("menu",mdto.get(i).getMenu());
+			jo.put("qty",mdto.get(i).getQty());
+			jo.put("price",mdto.get(i).getPrice());
+			jo.put("created",mdto.get(i).getCreated());
 			ja.add(jo);
 		}
+		
+		
 		return ja.toJSONString();
 	}
+	
+	@RequestMapping("/getTotal")
+	@ResponseBody
+	public int dogetTotal(HttpServletRequest req){
+		String start = req.getParameter("start");
+		String end = req.getParameter("end");
+		int total = sales.getTotal(start, end);
+		return total;
+	}
+	
 	
 	
 }

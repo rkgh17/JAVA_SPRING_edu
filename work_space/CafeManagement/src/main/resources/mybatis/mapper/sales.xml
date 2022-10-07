@@ -3,7 +3,7 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
-<mapper namespace="com.study.springboot.jdbc.">
+<mapper namespace="com.study.springboot.jdbc.iSales">
 	<select id="getSalesList" resultType="com.study.springboot.jdbc.SalesDTO">
 		select menu,qty,price,created from sold_list where substr(created,1,8) between #{param1} and #{param2} order by created desc
 	</select>
