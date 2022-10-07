@@ -44,6 +44,8 @@
 </body>
 <script src='https://code.jquery.com/jquery-3.4.1.js'></script>
 <script>
+let slctp=0; //수량*가격 변수저장용
+
 $(document)
 .ready(function(){
 	getList();
@@ -56,10 +58,15 @@ $(document)
 	$('#name').val($.trim(ar[1]));
 	$('#price').val(ar[2]);
 	$('#qty').val(1);
+	slctp = parseInt(ar[2]);
 })
 .on('change','#qty',function(){
-	let price = parseInt($('#price').val());
+	//let price = parseInt($('#price').val());
 	let qty =  parseInt($('#qty').val());
+	qty = slctp * qty;
+	$('#price').val(qty);
+	
+	/* 미완성 코드 : 수량을 줄이면 안돌아감.
 	//console.log(price);
 	//console.log(qty);
 	if(qty>=3){
@@ -68,33 +75,27 @@ $(document)
 	qty = price * qty;
 	//console.log(qty);
 	$('#price').val(qty);
+	*/
+	
 })
 .on('click','#btnOrder',function(){
 	let name = $('#name').val();
 	let qty = $('#qty').val();
 	let price = $('#price').val();
-	let str = '<option>'+name+','+qty+','+price+'</option>';
+	let str = '<option>'+name+','+qty+','+price+'</option>'; //<option>Latte,1,3000</option>
 	$('#selOrder').append(str);
 	$('#name,#qty,#price').val('');
-	
-	
-	
-	/*$('#selOrder option').each(function(){
-		let str=$(this).text();
-		//console.log(str);
-		let ar=str.split(',');
-		//console.log(ar);
-		//console.log(ar[2]);
-		
-		let total=0;
-		
-		for(let i=0 ; i<ar.length ; i++){
 
-			//console.log(ar);
-		}
-		$('#total').val(total);
-	});*/
-	
+	let total=0;
+	$('#selOrder option').each(function(){
+		let sstr=$(this).text();
+		//console.log(sstr);
+		let arr=sstr.split(',');
+		//console.log(arr);
+		total = total+ parseInt(arr[2]);
+	})
+	//console.log(total);
+	$('#total').val(total);
 })
 .on('click','#btnEmpty',function(){
 	$('#name,#qty,#price').val('');
