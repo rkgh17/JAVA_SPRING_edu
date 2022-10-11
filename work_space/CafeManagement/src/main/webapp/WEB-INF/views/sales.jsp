@@ -31,12 +31,10 @@
 <script src='https://code.jquery.com/jquery-3.4.1.js'></script>
 <script>
 $(document)
-.ready(function(){
-})
-
 .on('click','#btnFind',function(){
 	$('#selSales').empty();
 	let start = ($('#start').val()).replace(/-/g, "");
+	//start.replace('-','');
 	let end = ($('#end').val()).replace(/-/g, ""); //시작 끝 문자열 변환
 	
 	$.post('http://localhost:8081/getSalesList',{start:start,end:end},function(rcv){
@@ -49,7 +47,6 @@ $(document)
 	$.post('http://localhost:8081/getTotal',{start:start,end:end},function(rcv){
 		$('#outgo').val(parseInt(rcv));
 	},'text');
-	
 });
 </script>
 </html>
