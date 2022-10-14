@@ -1,0 +1,8 @@
+oracle db
+-자율운영 트랜잭션 처리 ATP(거래처리)
+-자율운영 DB생성
+-비밀번호 꼭 잊으면 안댐
+-생성
+
+자바 application.propertiesㅇ에 21
+thin:@~~~~~ -> 다운받은 전자지갑의 tnsname->
