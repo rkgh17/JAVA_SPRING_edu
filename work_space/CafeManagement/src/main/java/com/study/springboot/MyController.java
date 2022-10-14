@@ -24,7 +24,7 @@ public class MyController {
 	private iCafe cafe;
 	@Autowired
 	private iSales sales;
-	@RequestMapping("/")
+	@RequestMapping("/")//dispatchservlet
 	public @ResponseBody String root() {return "CafeManagemen";}
 	@RequestMapping("/menu")
 	public String doMenu() {return "menu";}
