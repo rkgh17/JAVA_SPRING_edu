@@ -37,7 +37,7 @@ public class BookController {
 		
 		String bookId = this.bookService.create(map);
 		
-		System.out.println(bookId);
+//		System.out.println(bookId);
 		
 		if(bookId == null) {
 			mav.setViewName("redirect:/create");
