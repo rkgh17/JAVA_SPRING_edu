@@ -1,0 +1,12 @@
+.APP{
+	text-align: center;
+	min-height: 50vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.form{
+	text-align: right;
+	margin-right : 60px;
+}
