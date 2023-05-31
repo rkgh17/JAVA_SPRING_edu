@@ -10,10 +10,10 @@ public class note {
 		Date now = new Date();
 		String strFormatter = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()));
 		
-//		System.out.println(now);
+		System.out.println(now);
 //		System.out.println(System.currentTimeMillis());
 //		System.out.println(new Date(System.currentTimeMillis()));
-//		System.out.println(strFormatter);
+		System.out.println(strFormatter);
 		
 		
 		
