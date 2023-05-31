@@ -3,26 +3,87 @@
 <mapper namespace="book">
 
 	<insert id = "insert" parameterType = "hashMap" useGeneratedKeys = "true" keyProperty = "book_id">
+		/* 책 입력 : book.insert */
 	    <![CDATA[
-	    insert into book
-	    (title, category, price) 
-	    values
-	    (#{title}, #{category}, #{price})
+		    INSERT INTO 
+		    	book
+				(title, category, price) 
+		    VALUES
+		    	(#{title}, #{category}, #{price})
 	    ]]>
 	</insert>
 	
 	<select id="select_detail" parameterType="hashMap" resultType="hashMap">
+		/* 책 상세화면 조회 : book.select_detail */
 	    <![CDATA[
 	        SELECT
-	        title,
-	        category,
-	        price,
-	 		insert_date
-	        from
-	        book
-	        where
-	        book_id = #{bookId}   
+		        title,
+		        category,
+		        price,
+		 		insert_date
+		    FROM
+		        book
+	        WHERE
+	        	book_id = #{bookId}   
 	    ]]>
+	</select>
+	
+	<update id="update" parameterType="hashMap">
+		/* 책 수정 : book.update */  
+		<![CDATA[  
+			UPDATE
+				book 
+			SET 
+				title = #{title},  
+				category = #{category},  
+				price = #{price}  
+			WHERE  
+				book_id = #{bookId}	  
+		]]>  
+	</update>
+	
+	<delete id="delete" parameterType="hashMap">
+		/* 책 정보 삭제 : book.delete */
+		<![CDATA[
+			DELETE
+			FROM
+				book
+			WHERE
+				book_id = #{bookId}
+		]]>
+	</delete>
+	
+	<select id="select_list" parameterType="hashMap" resultType="hashMap">
+		/* 책 목록 조회 : book.select_list */
+  
+			<![CDATA[  
+			SELECT  
+				book_id,  
+				title,  
+				category,  
+				price,  
+				insert_date  
+			FROM  
+				book
+			WHERE
+				1 = 1
+			]]>  
+			
+			<if test="keyword != null and keyword!= '' ">
+				AND
+					(title 
+						LIKE 
+							CONCAT('%', #{keyword}, '%') 
+						OR
+					category
+						LIKE
+							CONCAT('%', #{keyword} , '%')
+					)
+			</if>
+			
+			ORDER BY 
+				insert_date desc
+  
 	</select>
 	
 </mapper>

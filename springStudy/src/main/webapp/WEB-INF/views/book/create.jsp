@@ -13,7 +13,9 @@
 			   <p>카테고리 : <input type="text" name="category" /></p>
 			   <p>가격 : <input type="text" name="price" /></p>
 			   <p><input type="submit" value="저장" />
+			   <!-- <button>목록</button>  -->
 			</form>
+			
 		</div>
 		
 	</div>

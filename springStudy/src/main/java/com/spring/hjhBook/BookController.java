@@ -1,5 +1,6 @@
 package com.spring.hjhBook;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class BookController {
 	BookService bookService;
 	
 	/**
-	 * 책 생성 Mapping
+	 * 책 입력 화면 리턴
 	 * @param 제목, 카테고리, 가격
 	 * 
 	 * @return
@@ -28,6 +29,12 @@ public class BookController {
 		return new ModelAndView("book/create");
 	}
 	
+	/**
+	 * 책 입력 데이터 리턴
+	 * 
+	 * @param map
+	 * @return
+	 */
 	@RequestMapping(value="create", method = RequestMethod.POST)
 	public ModelAndView createPost(@RequestParam Map<String, Object> map) {
 		
@@ -48,4 +55,102 @@ public class BookController {
 		return mav;
 	}
 
+	/**
+	 * 상세화면 리턴
+	 * 
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping(value="/detail", method = RequestMethod.GET)
+	public ModelAndView detail(@RequestParam Map<String, Object> map) {
+	    Map<String, Object> detailMap = this.bookService.detail(map);
+
+	    ModelAndView mav = new ModelAndView();
+	    mav.addObject("data", detailMap);
+	    String bookId = map.get("bookId").toString();
+	    mav.addObject("bookId", bookId);
+	    mav.setViewName("/book/detail");
+	    return mav;
+	}
+	
+	/**
+	 * 책 수정화면 리턴
+	 * 
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping(value = "/update", method = RequestMethod.GET)  
+	public ModelAndView update(@RequestParam Map<String, Object> map) {  
+	Map<String, Object> detailMap = this.bookService.detail(map);  
+
+	ModelAndView mav = new ModelAndView();  
+	mav.addObject("data", detailMap);  
+	mav.setViewName("/book/update");  
+	return mav;  
+	}
+	
+	/**
+	 * 책 수정 데이터 리턴
+	 * 
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping(value="update", method = RequestMethod.POST)
+	public ModelAndView updatePost(@RequestParam Map<String, Object> map) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		boolean isUpdateSuccess = this.bookService.edit(map);
+		
+		if(isUpdateSuccess) {
+			String bookId = map.get("bookId").toString();
+			mav.setViewName("redirect:/detail?bookId=" + bookId);  
+		}else {
+			mav = this.update(map);
+		}
+		
+		return mav;
+	}
+	
+	/**
+	 * 책 삭제 리턴
+	 * 
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping(value="/delete", method = RequestMethod.POST)
+	public ModelAndView deletePost(@RequestParam Map<String, Object>map) {
+		ModelAndView mav = new ModelAndView();
+		
+		boolean isDeleteSuccess = this.bookService.remove(map);
+		if(isDeleteSuccess) {
+			mav.setViewName("redirect:/list");
+		}else {
+			String bookId = map.get("bookId").toString();
+			mav.setViewName("redirect:/detail?bookId=" + bookId);
+		}
+		
+		return mav;
+	}
+	
+	/**
+	 * 책 목록 리턴
+	 * 
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping(value="list")
+	public ModelAndView list(@RequestParam Map<String, Object> map) {
+		List<Map<String, Object>> list = this.bookService.list(map);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("data", list);
+		
+		if(map.containsKey("keyword")) {
+			mav.addObject("keyword", map.get("keyword"));
+		}
+		
+		mav.setViewName("/book/list");
+		return mav;
+	}
 }
