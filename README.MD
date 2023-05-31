@@ -1,3 +1,3 @@
-#Spring Study
+# Spring Study
 
-- legacy
+legacy
